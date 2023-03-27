@@ -1,0 +1,36 @@
+User Table:
+create table users( 
+    id int(6) primary key auto_increment not null unique,
+    fname varchar(125) not null,
+    lname varchar(125) not null,
+    email varchar(255) not null unique,
+    password varchar(500) not null,
+    profile varchar(500) not null,
+    credit int(10) not null,
+    timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+
+Task Table:
+create table tasks( 
+    id int(6) primary key auto_increment not null unique,
+    uid int(6) not null,
+    title varchar(125) not null,
+    content varchar(500) not null,
+    color varchar(125) not null,
+    img varchar(500) not null,
+    rem DATETIME not null,
+    type VARCHAR(125) not null,
+    timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (uid) REFERENCES users(id)
+);
+
+
+Network Table:
+create table network( 
+    id int(6) primary key auto_increment not null unique,
+    uid int(6) not null,
+    fid int(6) not null,
+    FOREIGN KEY (uid) REFERENCES users(id),
+    FOREIGN KEY (fid) REFERENCES users(id)
+);
